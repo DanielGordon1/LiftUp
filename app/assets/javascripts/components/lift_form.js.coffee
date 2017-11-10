@@ -41,6 +41,8 @@
           name: 'date'
           value: @state.date
           onChange: @handleValueChange
+      React.DOM.div
+        className: 'form-group'
         React.DOM.input
           type: 'text'
           className: 'form-control'
@@ -48,10 +50,8 @@
           name: 'liftname'
           value: @state.liftname
           onChange: @handleValueChange
-        React.DOM.a
-          className: 'btn btn-primary'
-          onClick: @toggleUnit
-          'Metric = ' + @state.ismetric.toString()
+      React.DOM.div
+        className: 'form-group'
         React.DOM.input
           type: 'number'
           className: 'form-control'
@@ -59,6 +59,8 @@
           name: 'weightlifted'
           value: @state.weightlifted
           onChange: @handleValueChange
+      React.DOM.div
+        className: 'form-group'
         React.DOM.input
           type: 'number'
           min: 1
@@ -68,6 +70,14 @@
           name: 'repsperformed'
           value: @state.repsperformed
           onChange: @handleValueChange
+      React.DOM.div
+        className: 'form-group'
+        React.DOM.a
+          className: 'btn btn-primary'
+          onClick: @toggleUnit
+          'Metric = ' + @state.ismetric.toString()
+      React.DOM.div
+        className: 'form-group'
         React.DOM.button
           type: 'submit'
           className: 'btn btn-primary'
