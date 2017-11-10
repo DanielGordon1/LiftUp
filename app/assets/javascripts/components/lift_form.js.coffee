@@ -1,3 +1,6 @@
+coefficients = {
+  1: 1, 2: .943, 3: .906, 4: .881, 5: .851, 6: .831, 7: .807, 8: .786, 9: .765, 10: .744
+}
 @LiftForm = React.createClass
   getInitialState: ->
     date: ''
@@ -5,21 +8,18 @@
     ismetric: false
     weightlifted: ''
     repsperformed: ''
-    onerm: 0
-    coefficients: {
-      1: 1, 2: .943, 3: .906, 4: .881, 5: .851, 6: .831, 7: .807, 8: .786, 9: .765, 10: .744
-    }
-  calculateOneRm: ->
-    if @state.weightlifted and @state.repsperformed
-      @state.onerm = @state.weightlifted / @state.coefficients[@state.repsperformed]
-    else
-      0
+    onerm: '0'
   handleValueChange: (e) ->
     valueName = e.target.name
     @setState "#{ valueName }": e.target.value
   toggleUnit: (e) ->
     e.preventDefault()
     @setState ismetric: !@state.ismetric
+  calculateOneRm: ->
+    if @state.weightlifted and @state.repsperformed
+        @state.onerm = @state.weightlifted / coefficients[@state.repsperformed]
+    else
+      0
   valid: ->
     @state.date && @state.liftname && @state.weightlifted && @state.repsperformed && @state.onerm
   handleSubmit: (e) ->
@@ -70,17 +70,13 @@
           name: 'repsperformed'
           value: @state.repsperformed
           onChange: @handleValueChange
-      React.DOM.div
-        className: 'form-group'
-        React.DOM.a
-          className: 'btn btn-primary'
-          onClick: @toggleUnit
-          'Metric = ' + @state.ismetric.toString()
-      React.DOM.div
-        className: 'form-group'
-        React.DOM.button
-          type: 'submit'
-          className: 'btn btn-primary'
-          disabled: !@valid()
-          'Create Lift'
-        React.createElement OneRmBox, onerm: @calculateOneRm()
+      React.DOM.a
+        className: 'btn btn-primary'
+        onClick: @toggleUnit
+        'Metric = ' + @state.ismetric.toString()
+      React.DOM.button
+        type: 'submit'
+        className: 'btn btn-primary'
+        disabled: !@valid()
+        'Create Lift'
+      React.createElement OneRmBox, onerm: @calculateOneRm()
