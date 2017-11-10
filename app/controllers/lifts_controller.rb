@@ -4,7 +4,6 @@ class LiftsController < ApplicationController
   end
   def create
     @lift = Lift.new(lift_params)
-
     if @lift.save
       render json: @lift
     else
@@ -15,6 +14,6 @@ class LiftsController < ApplicationController
   private
 
   def lift_params
-    params.require(:lift).permit(:date, :liftname, :ismetric, :weightlifted, :respsperformed)
+    params.require(:lift).permit(:date, :liftname, :ismetric, :weightlifted, :repsperformed, :onerm)
   end
 end

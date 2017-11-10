@@ -1,4 +1,3 @@
-
 @Lifts = React.createClass
   getInitialState: ->
     lifts: @props.data
